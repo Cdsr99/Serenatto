@@ -1,33 +1,10 @@
 <?php
-$products = [
-    [
-        'title' => 'Coffee Sweet',
-        'description' => 'This is the best fucking coffee ever',
-        'price' => '5.45',
-        'image' => 'img/cappuccino.jpg',
-    ],
-    [
-        'title' => 'Coffee Vanila',
-        'description' => 'Have a light coffee with the best cream',
-        'price' => '10.24',
-        'image' => 'img/cafe-cremoso.jpg',
+require 'src/db_connection.php';
+$select =  'select * from products where type = "Coffee";';
+$statement = $pdo->query($select);
+$productsCoffee = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    ],
-    [
-        'title' => 'Black Coffee',
-        'description' => 'Wake the fuck up with energys black coffee',
-        'price' => '75.00',
-        'image' => 'img/cafe-com-leite.jpg',
 
-    ],
-    [
-        'title' => 'Tea Coffee',
-        'description' => 'The worst coffee you can get',
-        'price' => '00.00',
-        'image' => 'img/cafe-gelado.jpg',
-
-    ],
-];
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -60,14 +37,14 @@ $products = [
             </div>
             <div class="container-cafe-manha-produtos">
 
-                <?php foreach ($products as $coffee): ?>
+                <?php foreach ($productsCoffee as $productsCoffee): ?>
                     <div class="container-produto">
                         <div class="container-foto">
-                        <img src="<?=$coffee['image'];?>">
+                        <img src="img/<?=$productsCoffee['imagem'];?>">
                     </div>
-                    <p><?=$coffee['title'];?></p>
-                    <p><?=$coffee['description'];?></p>
-                    <p><?=$coffee['price'];?></p>
+                    <p><?=$productsCoffee['name'];?></p>
+                    <p><?=$productsCoffee['description'];?></p>
+                    <p><?=$productsCoffee['price'];?></p>
                 </div>
                 <?php endforeach;?>
             </div>
