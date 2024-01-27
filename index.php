@@ -1,8 +1,21 @@
 <?php
+
 require 'src/db_connection.php';
-$select =  'select * from products where type = "Coffee";';
+require 'src/Models/Products.php';
+
+$select =  'select * from products where type = "Coffee" order by price;';
 $statement = $pdo->query($select);
 $productsCoffee = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+$dataCoffee = array_map(function ($coffee){
+   return new Products($coffee['id'],
+    $coffee['type'],
+    $coffee['name'],
+    $coffee['description'],
+    $coffee['imagem'],
+    $coffee['price']
+);
+}, $productsCoffee)
 
 
 ?>
@@ -37,14 +50,14 @@ $productsCoffee = $statement->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="container-cafe-manha-produtos">
 
-                <?php foreach ($productsCoffee as $productsCoffee): ?>
+                <?php foreach ($dataCoffee as $dCoffee): ?>
                     <div class="container-produto">
                         <div class="container-foto">
-                        <img src="img/<?=$productsCoffee['imagem'];?>">
+                        <img src="img/<?= $dCoffee->getImagem();?>">
                     </div>
-                    <p><?=$productsCoffee['name'];?></p>
-                    <p><?=$productsCoffee['description'];?></p>
-                    <p><?=$productsCoffee['price'];?></p>
+                    <p><?=$dCoffee->getName();?></p>
+                    <p><?=$dCoffee->getDescription();?></p>
+                    <p><?="R$ " . number_format($dCoffee->getprice(),2);?></p>
                 </div>
                 <?php endforeach;?>
             </div>
