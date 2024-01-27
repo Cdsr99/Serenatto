@@ -1,3 +1,34 @@
+<?php
+$products = [
+    [
+        'title' => 'Coffee Sweet',
+        'description' => 'This is the best fucking coffee ever',
+        'price' => '5.45',
+        'image' => 'img/cappuccino.jpg',
+    ],
+    [
+        'title' => 'Coffee Vanila',
+        'description' => 'Have a light coffee with the best cream',
+        'price' => '10.24',
+        'image' => 'img/cafe-cremoso.jpg',
+
+    ],
+    [
+        'title' => 'Black Coffee',
+        'description' => 'Wake the fuck up with energys black coffee',
+        'price' => '75.00',
+        'image' => 'img/cafe-com-leite.jpg',
+
+    ],
+    [
+        'title' => 'Tea Coffee',
+        'description' => 'The worst coffee you can get',
+        'price' => '00.00',
+        'image' => 'img/cafe-gelado.jpg',
+
+    ],
+];
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -21,45 +52,24 @@
                 <img src="img/logo-serenatto.png" class="logo" alt="logo-serenatto">
             </div>
         </section>
-        <h2>Cardápio Digital</h2>
+        <h2>Digital Menu</h2>
         <section class="container-cafe-manha">
             <div class="container-cafe-manha-titulo">
-                <h3>Opções para o Café</h3>
+                <h3>Coffee Options:</h3>
                 <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
             </div>
             <div class="container-cafe-manha-produtos">
-                <div class="container-produto">
-                    <div class="container-foto">
-                        <img src="img/cafe-cremoso.jpg">
+
+                <?php foreach ($products as $coffee): ?>
+                    <div class="container-produto">
+                        <div class="container-foto">
+                        <img src="<?=$coffee['image'];?>">
                     </div>
-                    <p>Café Cremoso</p>
-                    <p>Café cremoso irresistivelmente suave e que envolve seu paladar</p>
-                    <p>R$ 5.00</p>
+                    <p><?=$coffee['title'];?></p>
+                    <p><?=$coffee['description'];?></p>
+                    <p><?=$coffee['price'];?></p>
                 </div>
-                <div class="container-produto">
-                    <div class="container-foto">
-                        <img src="img/cafe-com-leite.jpg">
-                    </div>
-                    <p>Café com Leite</p>
-                    <p>A harmonia perfeita do café e do leite, uma experiência reconfortante</p>
-                    <p>R$ 2.00</p>
-                </div>
-                <div class="container-produto">
-                    <div class="container-foto">
-                        <img src="img/cappuccino.jpg">
-                    </div>
-                    <p>Cappuccino</p>
-                    <p>Café suave, leite cremoso e uma pitada de sabor adocicado</p>
-                    <p>R$ 7.00</p>
-                </div>
-                <div class="container-produto">
-                    <div class="container-foto">
-                        <img src="img/cafe-gelado.jpg">
-                    </div>
-                    <p>Café Gelado</p>
-                    <p>Café gelado refrescante, adoçado e com notas sutis de baunilha ou caramelo.</p>
-                    <p>R$ 3.00</p>
-                </div>
+                <?php endforeach;?>
             </div>
         </section>
         <section class="container-almoco">
