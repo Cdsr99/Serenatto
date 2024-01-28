@@ -43,7 +43,9 @@ public function getPrice(): float{
     return $this->price;
 }
 
-
+public function getPriceFormated(): string{
+    return "R$ " . number_format($this->price,2);
+}
 
 
 }
