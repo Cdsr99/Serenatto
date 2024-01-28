@@ -2,40 +2,14 @@
 
 require 'src/db_connection.php';
 require 'src/Models/Products.php';
-
-//Searching for coffee
-$select =  'select * from products where type = "Coffee" order by price;';
-$statement = $pdo->query($select);
-$productsCoffee = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-$dataCoffee = array_map(function ($coffee) {
-    return new Products(
-        $coffee['id'],
-        $coffee['type'],
-        $coffee['name'],
-        $coffee['description'],
-        $coffee['imagem'],
-        $coffee['price']
-    );
-}, $productsCoffee);
+require 'src/Models/SearchProducts.php';
 
 
-//Searching for lunch
+$ProductsModel = new SearchProducts($pdo);
 
-$selectLunch =  'select * from products where type = "Lunch" order by price;';
-$statement = $pdo->query($selectLunch);
-$productsLunch = $statement->fetchAll(PDO::FETCH_ASSOC);
+$dataCoffee = $ProductsModel->getCoffeeOptions();
+$datalunch = $ProductsModel->getLunchOptions();
 
-$datalunch = array_map(function ($lunch) {
-    return new Products(
-        $lunch['id'],
-        $lunch['type'],
-        $lunch['name'],
-        $lunch['description'],
-        $lunch['imagem'],
-        $lunch['price']
-    );
-}, $productsLunch)
 
 ?>
 <!doctype html>
