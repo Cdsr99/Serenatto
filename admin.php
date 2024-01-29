@@ -65,10 +65,7 @@ $dataProducts = $ProductsModel->getAll();
           <?php endforeach; ?>
         </tbody>
       </table>
-      <a class="botao-cadastrar" href="register-product.php">Register Products</a>
-      <form action="#" method="post">
-        <input type="submit" class="botao-cadastrar" value="Dashboard" />
-      </form>
+      <a class="botao-cadastrar" href="register-product.php">Register Products</a><br><br>
     </section>
   </main>
 </body>
